@@ -37,11 +37,17 @@ router.get("/", async (req, res) => {
             ]
         });
 
-        // Redirigir a una ruta que maneje la visualización del QR
-        const base64Data = qrCodeImageUrl.replace(/^data:image\/png;base64,/, "");
-        const qrUrl = `/display-qr?data=${encodeURIComponent(base64Data)}`;
+	res.redirect(`https://www.imperioticket.com/ticket?qrCode=${encodeURIComponent(qrCodeImageUrl)}`);
+	
 
-        return res.redirect(qrUrl);
+
+
+        // Redirigir a una ruta que maneje la visualización del QR
+//        const base64Data = qrCodeImageUrl.replace(/^data:image\/png;base64,/, "");
+//      const qrUrl = `http://www.imperioticket.com/api/display-qr?data=${encodeURIComponent(base64Data)}`;
+//	console.log("Redirigiendo a:", qrUrl);
+//
+//        return res.redirect(qrUrl);
     } catch (error) {
         console.error("Error generando el código QR:", error);
         return res.status(500).send("Error generando el código QR");
