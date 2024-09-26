@@ -11,16 +11,16 @@ router.post("/", async (req, res) => {
         const paymentData = {
             items: modifiedItems,
             back_urls: {
-                success: back_urls.success || "http://147.79.107.178:3000/success",
-                failure: back_urls.failure || "http://147.79.107.178:3000/failure",
-                pending: back_urls.pending || "http://147.79.107.178:3000/pending"},
+                success: back_urls.success || "http://www.imperioticket.com/api/success",
+                failure: back_urls.failure || "http://www.imperioticket.com/api/failure",
+                pending: back_urls.pending || "http://www.imperioticket.com/api/pending"},
             auto_return: auto_return || "approved",
             payment_methods: payment_methods || {
                 excluded_payment_methods: [{ id: "visa" }],
                 excluded_payment_types: [{ id: "atm" }],
                 installments: 6  },
             external_reference: external_reference || "mi-referencia-external-12345",
-            notification_url: "http://147.79.107.178:3000/notifications"};
+            notification_url: "http://www.imperioticket.com/api/notifications"};
         console.log("Request body for creating preference:", paymentData);
         const headers = {
             'Content-Type': 'application/json',

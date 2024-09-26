@@ -7,6 +7,11 @@ import mongoose from 'mongoose';
 
 
 
+
+
+
+
+
 // Definir las constantes en un solo módulo
 export const appConfig = {
     port: 3000,
@@ -20,6 +25,10 @@ export const appConfig = {
     })
 };
 
+
+
+
+
 // Configuración de Nodemailer
 export const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -30,6 +39,10 @@ export const transporter = nodemailer.createTransport({
         pass: 'uyru mphn ihxu heqg',
     },
 });
+
+
+
+
 
 // Función para modificar los items
 export const modifyItems = (items) => {
@@ -47,6 +60,10 @@ export const modifyItems = (items) => {
 };
 
 
+
+
+
+// Certificados ssl
 export const options = {
   key: fs.readFileSync('/etc/letsencrypt/live/imperioticket.com/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/imperioticket.com/fullchain.pem')
@@ -56,8 +73,16 @@ export const options = {
 
 
 
+
+
 // Definir SECRET_KEY en el mismo script
 export const SECRET_KEY = process.env.SECRET_KEY || 'clave1234';
+
+
+
+
+
+
 
 // Verificación del token usando SECRET_KEY
 export const verifyToken = (req, res, next) => {
@@ -78,6 +103,10 @@ export const verifyToken = (req, res, next) => {
 
 
 
+
+
+
+// Coneccion a base de datos 
 export const connectDB = async () => {
   try {
     await mongoose.connect('mongodb://localhost:27017/itproductores');
