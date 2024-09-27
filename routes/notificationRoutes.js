@@ -13,6 +13,8 @@ router.post('/', async (req, res) => {
 
     try {
         const { id, type } = req.body; // Extrae el ID y tipo de notificación
+        console.log('[POST] /notifications - ID recibido:', id); // Log del ID recibido
+        console.log('[POST] /notifications - Tipo de notificación recibido:', type); // Log del tipo de notificación
 
         // Verifica que el tipo de notificación es 'payment'
         if (type === 'payment') {
@@ -21,6 +23,11 @@ router.post('/', async (req, res) => {
             // Usa el SDK de Mercado Pago para obtener los detalles del pago
             const payment = await mercadopago.payment.findById(id);
             console.log('[POST] /notifications - Detalles del pago obtenidos:', payment);
+
+            if (!payment) {
+                console.error('[POST] /notifications - No se encontró el pago con el ID proporcionado:', id);
+                return res.status(404).json({ message: 'Pago no encontrado' });
+            }
 
             // Procesa los detalles del pago (actualización de base de datos, confirmaciones, etc.)
             // Aquí puedes agregar la lógica que necesites
@@ -36,5 +43,6 @@ router.post('/', async (req, res) => {
         res.status(500).json({ message: 'Error interno al procesar la notificación' });
     }
 });
+
 
 export default router;
