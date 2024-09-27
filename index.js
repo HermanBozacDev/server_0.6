@@ -13,7 +13,8 @@ import failureRoutes from './routes/failureRoutes.js';
 import preferenceRoutes from './routes/preferenceRoutes.js';// Endpoint para registrar usuarios
 import registerRoutes from './routes/registerRoutes.js';
 import loginRoutes from './routes/loginRoutes.js';
-import panelRoutes from './routes/panelProductorRoutes.js'
+import panelRoutes from './routes/panelProductorRoutes.js
+import eventosRoutes from './routes/eventosRoutes.js';'
 //SERVICIOS
 import express from "express";
 //DATABASES
@@ -35,5 +36,6 @@ app.use('/api/create_preference', preferenceRoutes);
 app.use('/api/register', registerRoutes);
 app.use('/api/login',loginRoutes);
 app.use('/api/panelAdminEvento', panelRoutes);
+app.use('/api/eventos', eventosRoutes);
 //PUERTO
 app.listen(3000, () => {console.log('Servidor escuchando en el puerto 3000');});
