@@ -25,14 +25,14 @@ router.post('/', async (req, res) => {
 
             try {
                 // Usa el SDK de Mercado Pago para obtener los detalles del pago
-                const paymentDetails = await Payment.get(id); // Cambiado a `Payment.get(id)`
+                const paymentDetails = await payment.get(id); // Asegúrate de que aquí estés utilizando la instancia correcta
                 console.log('[POST] /notifications - Detalles del pago obtenidos:', paymentDetails);
 
                 // Aquí puedes agregar la lógica que necesites para procesar el pago
                 // Por ejemplo, actualizar tu base de datos con el estado del pago
 
                 // Responde indicando que la notificación fue procesada correctamente
-                return res.status(200).json({ message: 'Notificación procesada correctamente' });
+                return res.status(200).json({ message: 'Notificación procesada correctamente', paymentDetails });
             } catch (error) {
                 console.error('[POST] /notifications - Error al obtener los detalles del pago:', error);
                 return res.status(500).json({ message: 'Error al obtener los detalles del pago' });
