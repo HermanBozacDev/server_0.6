@@ -22,9 +22,9 @@ router.post("/", async (req, res) => {
         const paymentData = {
             items: modifiedItems,
             back_urls: {
-                success: back_urls.success || "http://www.imperioticket.com/api/success",
-                failure: back_urls.failure || "http://www.imperioticket.com/api/failure",
-                pending: back_urls.pending || "http://www.imperioticket.com/api/pending"
+                success: back_urls.success || "https://www.imperioticket.com/api/success",
+                failure: back_urls.failure || "https://www.imperioticket.com/api/failure",
+                pending: back_urls.pending || "https://www.imperioticket.com/api/pending"
             },
             auto_return: auto_return || "approved",
             payment_methods: payment_methods || {
@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
                 installments: 6
             },
             external_reference: external_reference || "mi-referencia-external-12345",
-            notification_url: "http://www.imperioticket.com/api/notifications"
+            notification_url: "https://www.imperioticket.com/api/notifications"
         };
 
         // Log de datos del request
