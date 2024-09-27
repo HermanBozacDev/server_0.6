@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
   try {
     // Buscar al usuario por su username
-    const user = await productor.findOne({ username });
+    const user = await Productor.findOne({ username });
     if (!user) {
       return res.status(400).json({ message: 'Usuario no encontrado' });
     }
