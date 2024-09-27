@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
         const headers = {
             'Content-Type': 'application/json',
             'Cache-Control': 'no-cache',
-            'Authorization': 'Bearer APP_USR-7156168157781283-xxx-xxx-1392481428',
+            //'Authorization': 'Bearer APP_USR-7156168157781283-xxx-xxx-1392481428',
             'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
         };
 
