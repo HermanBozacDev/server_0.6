@@ -2,7 +2,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import productor from '../models/productor.js'; // Asegúrate de tener este modelo definido
+import Productor from '../models/productores.js'; // Asegúrate de tener este modelo definido
 import { SECRET_KEY } from '../config.js'; // Asegúrate de importar SECRET_KEY desde tu archivo de configuración
 
 const router = express.Router();
