@@ -1,16 +1,9 @@
 import { v4 as uuidv4 } from 'uuid';
 import nodemailer from 'nodemailer';
-import { MercadoPagoConfig } from "mercadopago";
+import { MercadoPagoConfig } from 'mercadopago';
 import fs from 'fs';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
-
-
-
-
-
-
-
 
 // Definir las constantes en un solo módulo
 export const appConfig = {
@@ -25,9 +18,7 @@ export const appConfig = {
     })
 };
 
-
-
-
+console.log('appConfig:', appConfig);
 
 // Configuración de Nodemailer
 export const transporter = nodemailer.createTransport({
@@ -40,9 +31,7 @@ export const transporter = nodemailer.createTransport({
     },
 });
 
-
-
-
+console.log('Nodemailer transporter configurado.');
 
 // Función para modificar los items
 export const modifyItems = (items) => {
@@ -59,30 +48,19 @@ export const modifyItems = (items) => {
     });
 };
 
+console.log('modifyItems función definida.');
 
-
-
-
-// Certificados ssl
+// Certificados SSL
 export const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/imperioticket.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/imperioticket.com/fullchain.pem')
+    key: fs.readFileSync('/etc/letsencrypt/live/imperioticket.com/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/imperioticket.com/fullchain.pem')
 };
 
-
-
-
-
-
+console.log('Certificados SSL cargados.');
 
 // Definir SECRET_KEY en el mismo script
 export const SECRET_KEY = process.env.SECRET_KEY || 'clave1234';
-
-
-
-
-
-
+console.log('SECRET_KEY:', SECRET_KEY);
 
 // Verificación del token usando SECRET_KEY
 export const verifyToken = (req, res, next) => {
@@ -92,7 +70,6 @@ export const verifyToken = (req, res, next) => {
     }
 
     try {
-        // Usar SECRET_KEY en lugar de duplicar la clave
         const decoded = jwt.verify(token.split(' ')[1], SECRET_KEY);
         req.user = decoded;
         next();
@@ -101,23 +78,17 @@ export const verifyToken = (req, res, next) => {
     }
 };
 
+console.log('verifyToken middleware definido.');
 
-
-
-
-
-// Coneccion a base de datos 
+// Conexión a base de datos 
 export const connectDB = async () => {
-  try {
-    await mongoose.connect('mongodb://localhost:27017/itproductores');
-    console.log('Conectado a MongoDB');
-  } catch (err) {
-    console.error('Error al conectar a MongoDB', err);
-    process.exit(1); // Salir del proceso si no se puede conectar
-  }
+    try {
+        await mongoose.connect('mongodb://localhost:27017/itproductores');
+        console.log('Conectado a MongoDB');
+    } catch (err) {
+        console.error('Error al conectar a MongoDB', err);
+        process.exit(1); // Salir del proceso si no se puede conectar
+    }
 };
 
-
-
-
-
+console.log('connectDB función definida.');
