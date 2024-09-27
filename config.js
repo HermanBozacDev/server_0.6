@@ -11,7 +11,7 @@ export const appConfig = {
     idempotencyKey: uuidv4(),
     mercadoPago: new MercadoPagoConfig({
         accessToken: process.env.ACCESS_TOKEN ||
-            'APP_USR-4182250944919230-092518-bebf3d003288ed02c9d00ab78bfede6a-1208420997',
+            'APP_USR-3208588231811361-091423-58ab2b5fd537c43af8c128413d6d9e4f-1990229297',
         options: {
             timeout: 5000,
         }
