@@ -2,7 +2,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import productorUser from '../models/productorUser.js'; // Asegúrate de tener este modelo definido
+import productor from '../models/productor.js'; // Asegúrate de tener este modelo definido
 import { SECRET_KEY } from '../config.js'; // Asegúrate de importar SECRET_KEY desde tu archivo de configuración
 
 const router = express.Router();
@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
 
   try {
     // Verificar si el usuario ya existe
-    const existingUser = await productorUser.findOne({ username });
+    const existingUser = await productor.findOne({ username });
     if (existingUser) {
       return res.status(400).json({ message: 'El usuario ya existe' });
     }
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Crear el nuevo usuario
-    const newUser = new productorUser({ username, password: hashedPassword });
+    const newUser = new productor({ username, password: hashedPassword });
     await newUser.save();
 
     // Generar un token JWT
