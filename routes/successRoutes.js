@@ -4,7 +4,7 @@
 import express from 'express';
 import QRCode from 'qrcode';
 import { transporter } from '../config.js'; // Asegúrate de que el transporter esté exportado en config.js
-import Venta from '../models/venta.js';
+import Venta from '../models/ventas.js';
 const router = express.Router();
 
 router.get("/", async (req, res) => {
