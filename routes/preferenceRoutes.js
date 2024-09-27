@@ -13,7 +13,7 @@ const client = appConfig.mercadoPago;
  */
 router.post("/", async (req, res) => {
     try {
-        const { items, back_urls, auto_return, payment_methods, external_reference } = req.body;
+        const { items, payer, back_urls, payment_methods, auto_return, external_reference } = req.body;
 
         // Modificar los ítems según la configuración
         const modifiedItems = modifyItems(items);
