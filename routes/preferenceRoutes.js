@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
               excluded_payment_types: payment_methods.excluded_payment_types,
               installments: payment_methods.installments,
             },
-            external_reference: external_reference || uuidv4(),
+            external_reference: external_reference,
           };
 
         // Log de datos del request
