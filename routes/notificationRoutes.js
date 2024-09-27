@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     try {
         const { data, type } = req.body; // Extrae el objeto data y el tipo de notificación
         const paymentId = data.id; // Accede al ID del pago desde el objeto data
-        const eventId = data.id_url; // Extrae el ID del evento desde el query param
+        const eventId = req.query.id_url; // Extrae el ID del evento desde los query params
         console.log('[POST] /notifications - ID de pago recibido:', paymentId);
         console.log('[POST] /notifications - ID del evento recibido:', eventId);
         console.log('[POST] /notifications - Tipo de notificación recibido:', type);
