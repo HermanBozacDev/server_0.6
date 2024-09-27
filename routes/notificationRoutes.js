@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
             console.log('[POST] /notifications - Notificación de tipo "payment" con ID:', paymentId);
 
             try {
+                console.log(req.body["id"])
                 // Usa el SDK de Mercado Pago para obtener los detalles del pago
                 const paymentDetails = await payment.get(paymentId); // Cambiado a `payment.get(paymentId)`
                 console.log('[POST] /notifications - Detalles del pago obtenidos:', paymentDetails);
