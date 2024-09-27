@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
 
   try {
     // Verificar si el usuario ya existe
-    const existingUser = await productor.findOne({ username });
+    const existingUser = await Productor.findOne({ username });
     if (existingUser) {
       return res.status(400).json({ message: 'El usuario ya existe' });
     }
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Crear el nuevo usuario
-    const newUser = new productor({ username, password: hashedPassword });
+    const newUser = new Productor({ username, password: hashedPassword });
     await newUser.save();
 
     // Generar un token JWT
