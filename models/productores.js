@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
 
 const productorSchema = new mongoose.Schema({
-  nombre: { type: String, required: true },
-  contacto: { type: String, required: true },
-  empresa: { type: String }
+  username: { type: String, required: true },
+  passwords: { type: String, required: true }
 });
 
 // Crea el modelo para la colección 'productores'
