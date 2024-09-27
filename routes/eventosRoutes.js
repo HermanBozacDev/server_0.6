@@ -4,6 +4,22 @@ import Evento from '../models/eventos.js';
 
 const router = express.Router();
 
+
+// Obtener todos los eventos
+router.get('/', async (req, res) => {
+  try {
+    const eventos = await Evento.find(); // Encuentra todos los eventos
+    res.status(200).json(eventos); // Devuelve los eventos encontrados
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener eventos', error });
+  }
+});
+
+
+
+
+
+
 // Poner evento
 router.post('/', async (req, res) => {
   try {
