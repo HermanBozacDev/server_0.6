@@ -7,6 +7,7 @@ const router = express.Router();
 // Poner evento
 router.post('/', async (req, res) => {
   try {
+    console.log("post event")
     const nuevoEvento = new Evento(req.body); // Crea un nuevo evento con los datos del cuerpo de la solicitud
     const eventoGuardado = await nuevoEvento.save(); // Guarda el evento en la base de datos
     res.status(201).json(eventoGuardado); // Responde con el evento guardado
