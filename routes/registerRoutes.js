@@ -17,10 +17,10 @@ router.post('/', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: 'El usuario ya existe' });
     }
-
+    console.log("user no existe")
     // Cifrar la contraseña antes de guardarla
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    console.log("hasie contra")
     // Crear el nuevo usuario
     const newUser = new Productor({ username, password: hashedPassword });
     await newUser.save();
