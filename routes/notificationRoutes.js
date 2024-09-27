@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
         console.log('[POST] /notifications - ID de pago recibido:', paymentId);
         console.log('[POST] /notifications - ID del evento recibido:', eventId);
         console.log('[POST] /notifications - Tipo de notificación recibido:', type);
-        res.status(200).send("Notification received"); puse esta porqueria directamente aca y me dio positivo
+        res.status(200).send("Notification received"); //puse esta porqueria directamente aca y me dio positivo
         // Verifica que el tipo de notificación es 'payment'
     } catch (error) {
         console.error('[POST] /notifications - Error al procesar la notificación:', error);
