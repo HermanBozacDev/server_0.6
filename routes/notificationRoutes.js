@@ -17,8 +17,10 @@ router.post('/', async (req, res) => {
 
     try {
         const { data, type } = req.body; // Extrae el objeto data y el tipo de notificación
-        const paymentId = req.body["id"]; // Accede al ID del pago desde el objeto data
-        console.log('[POST] /notifications - ID recibido:', paymentId);
+        const paymentId = data.id; // Accede al ID del pago desde el objeto data
+        const eventId = data.id_url; // Extrae el ID del evento desde el query param
+        console.log('[POST] /notifications - ID de pago recibido:', paymentId);
+        console.log('[POST] /notifications - ID del evento recibido:', eventId);
         console.log('[POST] /notifications - Tipo de notificación recibido:', type);
 
         // Verifica que el tipo de notificación es 'payment'
@@ -69,7 +71,7 @@ router.post('/', async (req, res) => {
                     // Responde indicando que la notificación fue procesada correctamente
                     return res.status(200).json({ message: 'Notificación procesada correctamente' });
                 } catch (error) {
-                    console.error('[POST] /notifications - Error al obtener los detalles del pago:', error);
+                    console.error('[POST] /notifications - Error al obtener los detalles del pago:', error.response ? error.response.data : error);
                     return res.status(500).json({ message: 'Error al obtener los detalles del pago' });
                 }
             } else {
