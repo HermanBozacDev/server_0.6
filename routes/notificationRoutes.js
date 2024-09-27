@@ -2,7 +2,7 @@ import express from 'express';
 import { MercadoPagoConfig, Payment } from 'mercadopago';
 import crypto from 'crypto';
 
-// Inicializa el cliente
+// Inicializa el cliente de Mercado Pago
 const client = new MercadoPagoConfig({ accessToken: 'YOUR_ACCESS_TOKEN' });
 const payment = new Payment(client);
 
