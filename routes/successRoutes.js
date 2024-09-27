@@ -38,7 +38,9 @@ router.get("/", async (req, res) => {
             ]
         });
         console.log("estoy apunto de redirigir")
-	res.redirect(`https://www.imperioticket.com/TicketDetail?qrCode=${encodeURIComponent(qrCodeImageUrl)}`);
+	res.json({ qrCode: qrCodeImageUrl, message: "QR generado correctamente" });
+	
+//	res.redirect(`https://www.imperioticket.com/TicketDetail?qrCode=${encodeURIComponent(qrCodeImageUrl)}`);
 //	res.redirect(`https://www.imperioticket.com/EventDetails`);
 //	res.redirect(`https://www.imperioticket.com/ticket?qrCode=${encodeURIComponent(qrCodeImageUrl)}`);
 
