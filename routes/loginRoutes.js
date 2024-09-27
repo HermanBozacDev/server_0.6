@@ -2,7 +2,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'; // Importa JWT para generar el token
-import productor from '../models/productor.js'; // Modelo de usuario
+import Productor from '../models/productores.js'; // Modelo de usuario
 import { SECRET_KEY } from '../config.js'; // Importa la clave secreta
 
 const router = express.Router();
