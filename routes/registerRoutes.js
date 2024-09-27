@@ -7,26 +7,37 @@ import { SECRET_KEY } from '../config.js'; // Asegúrate de importar SECRET_KEY 
 
 const router = express.Router();
 
+/**
+ * POST /register
+ * Ruta para registrar un nuevo usuario. Cifra la contraseña y guarda el nuevo usuario en la base de datos.
+ * Responde con un token JWT y una URL de redirección.
+ */
 router.post('/', async (req, res) => {
   const { username, password } = req.body;
-  console.log("solicitud de registro");
+  console.log("[POST] /register - Solicitud de registro recibida");
 
   try {
     // Verificar si el usuario ya existe
     const existingUser = await Productor.findOne({ username });
     if (existingUser) {
+      console.warn("[POST] /register - Usuario ya existe:", username);
       return res.status(400).json({ message: 'El usuario ya existe' });
     }
-    console.log("user no existe")
+
+    console.log("[POST] /register - Usuario no existe, procediendo a crear uno nuevo");
+
     // Cifrar la contraseña antes de guardarla
     const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("hasie contra")
+    console.log("[POST] /register - Contraseña cifrada");
+
     // Crear el nuevo usuario
     const newUser = new Productor({ username, password: hashedPassword });
     await newUser.save();
+    console.log("[POST] /register - Usuario guardado en la base de datos");
 
     // Generar un token JWT
     const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
+    console.log("[POST] /register - Token JWT generado");
 
     // Responder con el token y la URL de redirección
     res.status(201).json({
@@ -35,9 +46,9 @@ router.post('/', async (req, res) => {
       redirectUrl: 'https://www.imperioticket.com/panelAdminEvento'
     });
   } catch (error) {
+    console.error("[POST] /register - Error al registrar usuario:", error);
     res.status(500).json({ message: 'Error al registrar usuario', error });
   }
 });
 
 export default router;
-
