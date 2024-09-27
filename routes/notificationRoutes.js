@@ -45,7 +45,7 @@ router.post('/', async (req, res) => {
             }
 
             // Obtén la clave secreta para tu aplicación
-            const secret = 'YOUR_SECRET_KEY_HERE'; // Reemplaza con tu clave secreta
+            const secret = 'd37ca9470386dbc05f31780c62dee59237bb0a93fb4800b06a1ed69ac25454de'; // Reemplaza con tu clave secreta
 
             // Genera la cadena de manifest
             const manifest = `id:${paymentId};request-id:${xRequestId};ts:${ts};`;
