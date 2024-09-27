@@ -1,10 +1,10 @@
 // routes/successRoutes.js
-//hola actualize en git
 
 import express from 'express';
 import QRCode from 'qrcode';
-import { transporter } from '../config.js'; // Asegúrate de que el transporter esté exportado en config.js
-import Venta from '../models/ventas.js';
+import { transporter } from '../config.js'; // Asegúrate de que el transporter esté exportado correctamente en config.js
+import Venta from '../models/ventas.js'; // Modelo para guardar la información de la venta en la base de datos
+
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -20,61 +20,49 @@ router.get("/", async (req, res) => {
     };
 
     try {
-        // Generar el QR
+        // Generar el código QR a partir de los datos del ticket
         const qrCodeImageUrl = await QRCode.toDataURL(JSON.stringify(ticketData));
 
-        // Crear la entrada en la colección de ventas
+        // Crear una nueva entrada en la colección de ventas
         const nuevaVenta = new Venta({
             qrId: collection_id,  // ID único para el QR
-            email: 'hermanbozac28@gmail.com', // Cambia esto al email del cliente
-            cantidad: 1, // Asigna la cantidad adecuada
-            fechaConcierto: new Date(), // Cambia esto a la fecha del concierto
+            email: 'hermanbozac28@gmail.com', // Cambiar esto al email del cliente real
+            cantidad: 1, // Asignar la cantidad adecuada
+            fechaConcierto: new Date(), // Cambiar a la fecha real del concierto
             informacionPago: {
                 collection_id,
                 external_reference,
-                // Aquí puedes agregar más detalles sobre el pago si es necesario
+                // Agregar más detalles sobre el pago si es necesario
             },
-            title: "Nombre del Evento", // Cambia esto al título real del evento
-            quantity: 1, // Asigna la cantidad adecuada
-            unit_price: 100, // Cambia esto al precio unitario real
-            itemId: "ID_del_item", // Cambia esto al ID del ítem real
-            description: "Descripción del ítem" // Cambia esto a la descripción real
+            title: "Nombre del Evento", // Cambiar al título real del evento
+            quantity: 1, // Asignar la cantidad adecuada
+            unit_price: 100, // Cambiar al precio unitario real
+            itemId: "ID_del_item", // Cambiar al ID real del ítem
+            description: "Descripción del ítem" // Cambiar a la descripción real
         });
 
         // Guardar la venta en la base de datos
         await nuevaVenta.save();
 
-
-	    
-        // Enviar el QR por correo electrónico
+        // Enviar el código QR por correo electrónico
         await transporter.sendMail({
-            from: '"Nombre del Remitente" <martinhermanbozac@gmail.com>', // Cambia esto al nombre y correo del remitente
-            to: 'hermanbozac28@gmail.com', // Cambia esto al correo del destinatario
+            from: '"Nombre del Remitente" <martinhermanbozac@gmail.com>', // Cambiar el nombre y correo del remitente
+            to: 'hermanbozac28@gmail.com', // Cambiar al correo del destinatario
             subject: 'Código QR de la Transacción',
             text: 'Adjunto encontrarás el código QR de tu transacción.',
             attachments: [
                 {
                     filename: 'qrcode.png',
-                    content: qrCodeImageUrl.split(',')[1], // Obtén solo el base64 sin el prefijo
+                    content: qrCodeImageUrl.split(',')[1], // Obtener solo el base64 sin el prefijo
                     encoding: 'base64'
                 }
             ]
         });
-        console.log("estoy apunto de redirigir")
-//	res.json({ qrCode: qrCodeImageUrl, message: "QR generado correctamente" });
-	
-//	res.redirect(`https://www.imperioticket.com/TicketDetail?qrCode=${encodeURIComponent(qrCodeImageUrl)}`);
-	res.redirect(`https://www.imperioticket.com/EventDetails`);
-//	res.redirect(`https://www.imperioticket.com/ticket?qrCode=${encodeURIComponent(qrCodeImageUrl)}`);
 
+        console.log("Correo enviado con el código QR");
 
-
-        // Redirigir a una ruta que maneje la visualización del QR
-//        const base64Data = qrCodeImageUrl.replace(/^data:image\/png;base64,/, "");
-//      const qrUrl = `http://www.imperioticket.com/api/display-qr?data=${encodeURIComponent(base64Data)}`;
-//	console.log("Redirigiendo a:", qrUrl);
-//
-//        return res.redirect(qrUrl);
+        // Redirigir a la página de detalles del evento en el frontend
+        res.redirect(`https://www.imperioticket.com/EventDetails`);
     } catch (error) {
         console.error("Error generando el código QR:", error);
         return res.status(500).send("Error generando el código QR");
@@ -82,4 +70,3 @@ router.get("/", async (req, res) => {
 });
 
 export default router;
-
