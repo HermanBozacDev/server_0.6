@@ -13,7 +13,7 @@ import failureRoutes from './routes/failureRoutes.js';
 import preferenceRoutes from './routes/preferenceRoutes.js';// Endpoint para registrar usuarios
 import registerRoutes from './routes/registerRoutes.js';
 import loginRoutes from './routes/loginRoutes.js';
-import panelRoutes from './routes/panelProductorRoutes.js
+import panelRoutes from './routes/panelProductorRoutes.js;
 import eventosRoutes from './routes/eventosRoutes.js';
 //SERVICIOS
 import express from "express";
