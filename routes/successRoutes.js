@@ -4,7 +4,7 @@
 import express from 'express';
 import QRCode from 'qrcode';
 import { transporter } from '../config.js'; // Asegúrate de que el transporter esté exportado en config.js
-
+import Venta from '../models/venta.js';
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -23,6 +23,29 @@ router.get("/", async (req, res) => {
         // Generar el QR
         const qrCodeImageUrl = await QRCode.toDataURL(JSON.stringify(ticketData));
 
+        // Crear la entrada en la colección de ventas
+        const nuevaVenta = new Venta({
+            qrId: collection_id,  // ID único para el QR
+            email: 'hermanbozac28@gmail.com', // Cambia esto al email del cliente
+            cantidad: 1, // Asigna la cantidad adecuada
+            fechaConcierto: new Date(), // Cambia esto a la fecha del concierto
+            informacionPago: {
+                collection_id,
+                external_reference,
+                // Aquí puedes agregar más detalles sobre el pago si es necesario
+            },
+            title: "Nombre del Evento", // Cambia esto al título real del evento
+            quantity: 1, // Asigna la cantidad adecuada
+            unit_price: 100, // Cambia esto al precio unitario real
+            itemId: "ID_del_item", // Cambia esto al ID del ítem real
+            description: "Descripción del ítem" // Cambia esto a la descripción real
+        });
+
+        // Guardar la venta en la base de datos
+        await nuevaVenta.save();
+
+
+	    
         // Enviar el QR por correo electrónico
         await transporter.sendMail({
             from: '"Nombre del Remitente" <martinhermanbozac@gmail.com>', // Cambia esto al nombre y correo del remitente
