@@ -15,24 +15,25 @@ router.post('/', async (req, res) => {
     console.log('[POST] /notifications - Notificación recibida:', req.body);
 
     try {
-        const { id, type } = req.body; // Extrae el ID y tipo de notificación
-        console.log('[POST] /notifications - ID recibido:', id);
+        const { data, type } = req.body; // Extrae el objeto data y el tipo de notificación
+        const paymentId = data.id; // Accede al ID del pago desde el objeto data
+        console.log('[POST] /notifications - ID recibido:', paymentId);
         console.log('[POST] /notifications - Tipo de notificación recibido:', type);
 
         // Verifica que el tipo de notificación es 'payment'
         if (type === 'payment') {
-            console.log('[POST] /notifications - Notificación de tipo "payment" con ID:', id);
+            console.log('[POST] /notifications - Notificación de tipo "payment" con ID:', paymentId);
 
             try {
                 // Usa el SDK de Mercado Pago para obtener los detalles del pago
-                const paymentDetails = await payment.get(id); // Asegúrate de que aquí estés utilizando la instancia correcta
+                const paymentDetails = await payment.get(paymentId); // Cambiado a `payment.get(paymentId)`
                 console.log('[POST] /notifications - Detalles del pago obtenidos:', paymentDetails);
 
                 // Aquí puedes agregar la lógica que necesites para procesar el pago
                 // Por ejemplo, actualizar tu base de datos con el estado del pago
 
                 // Responde indicando que la notificación fue procesada correctamente
-                return res.status(200).json({ message: 'Notificación procesada correctamente', paymentDetails });
+                return res.status(200).json({ message: 'Notificación procesada correctamente' });
             } catch (error) {
                 console.error('[POST] /notifications - Error al obtener los detalles del pago:', error);
                 return res.status(500).json({ message: 'Error al obtener los detalles del pago' });
