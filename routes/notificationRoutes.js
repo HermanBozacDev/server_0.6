@@ -1,7 +1,7 @@
 // routes/notificationRoutes.js
 import express from 'express';
-import mercadopago from 'mercadopago'; // Asegúrate de que mercadopago esté instalado
 
+import { Payment } from 'mercadopago';
 const router = express.Router();
 
 /**
@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
             console.log('[POST] /notifications - Notificación de tipo "payment" con ID:', id);
 
             // Usa el SDK de Mercado Pago para obtener los detalles del pago
-            const payment = await mercadopago.payment.findById(id);
+            const payment = await Payment.findById(id);
             console.log('[POST] /notifications - Detalles del pago obtenidos:', payment);
 
             if (!payment) {
