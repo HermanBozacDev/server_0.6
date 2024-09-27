@@ -1,8 +1,9 @@
 //CONFIGURACION GLOBAL
-import { appConfig, transporter, options, connectDB } from './config.js';
+import { appConfig, transporter, options } from './config.js';
 import { configureCors } from './middlewares/corsConfig.js';
 import { verifyToken } from './config.js';
 import { SECRET_KEY } from './config.js';
+import connectDB from './config/database.js';
 //RUTAS
 import notificationRoutes from './routes/notificationRoutes.js';
 import successRoutes from './routes/successRoutes.js';
