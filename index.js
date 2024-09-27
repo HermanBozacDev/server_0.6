@@ -3,7 +3,7 @@ import { appConfig, transporter, options } from './config.js';
 import { configureCors } from './middlewares/corsConfig.js';
 import { verifyToken } from './config.js';
 import { SECRET_KEY } from './config.js';
-import connectDB from './config/database.js';
+import connectDB from './database/database.js';
 //RUTAS
 import notificationRoutes from './routes/notificationRoutes.js';
 import successRoutes from './routes/successRoutes.js';
