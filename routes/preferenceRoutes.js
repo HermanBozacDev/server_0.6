@@ -14,27 +14,46 @@ const client = appConfig.mercadoPago;
 router.post("/", async (req, res) => {
     try {
         const { items, payer, back_urls, payment_methods, auto_return, external_reference } = req.body;
+        // Verificar que los datos requeridos están presentes
+        if (!items || !payer || !back_urls) {
+            return res.status(400).json({ error: 'Faltan datos obligatorios' });
+        }
+        
+  
 
+
+
+
+        
         // Modificar los ítems según la configuración
         const modifiedItems = modifyItems(items);
 
         // Datos de la preferencia de pago
         const paymentData = {
-            items: modifiedItems,
-            back_urls: {
-                success: back_urls.success || "https://www.imperioticket.com/api/success",
-                failure: back_urls.failure || "https://www.imperioticket.com/api/failure",
-                pending: back_urls.pending || "https://www.imperioticket.com/api/pending"
+            items: items.map(item => ({
+              id: item.id,
+              title: item.title,
+              quantity: item.quantity,
+              unit_price: item.unit_price,
+              picture_url: item.picture_url ,
+              description: item.description ,
+            })),
+            payer: {
+              name: payer.name,
+              surname: payer.surname,
+              email: payer.email,
+              phone: payer.phone,
+              address: payer.address,
             },
-            auto_return: auto_return || "approved",
-            payment_methods: payment_methods || {
-                excluded_payment_methods: [{ id: "visa" }],
-                excluded_payment_types: [{ id: "atm" }],
-                installments: 6
+            back_urls,
+            auto_return: auto_return,
+            payment_methods: {
+              excluded_payment_methods: payment_methods.excluded_payment_methods,
+              excluded_payment_types: payment_methods.excluded_payment_types,
+              installments: payment_methods.installments,
             },
-            external_reference: external_reference || "mi-referencia-external-12345",
-            notification_url: "https://www.imperioticket.com/api/notifications"
-        };
+            external_reference: external_reference || uuidv4(),
+          };
 
         // Log de datos del request
         console.log("[POST] /payment - Request body for creating preference:", paymentData);
