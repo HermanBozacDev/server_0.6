@@ -4,34 +4,37 @@ import mercadopago from 'mercadopago'; // Asegúrate de que mercadopago esté in
 
 const router = express.Router();
 
-// Ruta para recibir las notificaciones de Mercado Pago
+/**
+ * POST /notifications
+ * Recibe y procesa las notificaciones de Mercado Pago
+ */
 router.post('/', async (req, res) => {
-    try {
-        // Asegúrate de que la notificación se recibe correctamente
-        console.log('Notificación recibida:', req.body);
+    console.log('[POST] /notifications - Notificación recibida:', req.body);
 
-        const { id, type } = req.body; // ID de la notificación
+    try {
+        const { id, type } = req.body; // Extrae el ID y tipo de notificación
 
         // Verifica que el tipo de notificación es 'payment'
         if (type === 'payment') {
+            console.log('[POST] /notifications - Notificación de tipo "payment" con ID:', id);
+
             // Usa el SDK de Mercado Pago para obtener los detalles del pago
             const payment = await mercadopago.payment.findById(id);
-            console.log('Detalles del pago:', payment);
+            console.log('[POST] /notifications - Detalles del pago obtenidos:', payment);
 
-            // Aquí puedes procesar los detalles del pago, por ejemplo:
-            // - Actualizar tu base de datos
-            // - Enviar confirmaciones, etc.
+            // Procesa los detalles del pago (actualización de base de datos, confirmaciones, etc.)
+            // Aquí puedes agregar la lógica que necesites
 
+            // Responde indicando que la notificación fue procesada correctamente
             res.status(200).json({ message: 'Notificación procesada correctamente' });
         } else {
+            console.log('[POST] /notifications - Tipo de notificación no soportada:', type);
             res.status(400).json({ message: 'Tipo de notificación no soportada' });
         }
     } catch (error) {
-        console.error('Error al procesar la notificación:', error);
+        console.error('[POST] /notifications - Error al procesar la notificación:', error);
         res.status(500).json({ message: 'Error interno al procesar la notificación' });
     }
 });
 
 export default router;
-
-
