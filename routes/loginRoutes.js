@@ -2,7 +2,7 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'; // Importa JWT para generar el token
-import productorUser from '../models/productorUser.js'; // Modelo de usuario
+import productor from '../models/productor.js'; // Modelo de usuario
 import { SECRET_KEY } from '../config.js'; // Importa la clave secreta
 
 const router = express.Router();
@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 
   try {
     // Buscar al usuario por su username
-    const user = await productorUser.findOne({ username });
+    const user = await productor.findOne({ username });
     if (!user) {
       return res.status(400).json({ message: 'Usuario no encontrado' });
     }
