@@ -15,6 +15,7 @@ import registerRoutes from './routes/registerRoutes.js';
 import loginRoutes from './routes/loginRoutes.js';
 import panelRoutes from './routes/panelProductorRoutes.js;
 import eventosRoutes from './routes/eventosRoutes.js';
+
 //SERVICIOS
 import express from "express";
 //DATABASES
