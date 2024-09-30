@@ -13,7 +13,7 @@ const client = appConfig.mercadoPago;
  */
 router.post("/", async (req, res) => {
     try {
-        const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
+        const { items, back_urls, auto_return, payment_methods, external_reference, notification_url,headers } = req.body;
         
         // Datos de la preferencia de pago
         const paymentData = {
@@ -32,16 +32,10 @@ router.post("/", async (req, res) => {
         // Log de datos del request
         console.log("[POST] /payment - Request body for creating preference:", paymentData);
 
-        const headers = {
-            'Content-Type': 'application/json',
-            'Cache-Control': 'no-cache',
-            'Authorization': 'Bearer APP_USR-7156168157781283-xxx-xxx-1392481428',
-            //'Authorization': 'Bearer APP_USR-7156168157781283-xxx-xxx-1392481428',
-            'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
-        };
+        const sendHeaders = headers
 
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({ body: paymentData, headers });
+        const result = await preference.create({ body: paymentData, sendHeaders });
 
         // Log de éxito
         console.log("[POST] /payment - Preference created successfully:", result);
