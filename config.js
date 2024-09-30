@@ -33,22 +33,7 @@ export const transporter = nodemailer.createTransport({
 
 console.log('Nodemailer transporter configurado.');
 
-// Función para modificar los items
-export const modifyItems = (items) => {
-    return items.map(item => {
-        if (!item.id) {
-            console.warn("Producto sin ID. Asignando ID predeterminado.");
-            item.id = "default-id";
-        }
-        if (!item.description) {
-            console.warn("Producto sin descripción. Asignando descripción predeterminada.");
-            item.description = "Descripción del producto por defecto";
-        }
-        return item;
-    });
-};
 
-console.log('modifyItems función definida.');
 
 // Certificados SSL
 export const options = {
