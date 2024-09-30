@@ -38,9 +38,9 @@ router.post("/", async (req, res) => {
              
         // Step 5: Create request options object - Optional
         const requestOptions = {
-            'Content-Type': 'application/json' 
-            'cache-control': 'no-cache'
-            'Authorization': 'Bearer APP_USR-a10b7367-f4d9-4fcd-b209-6b498100cf0c' 
+            'Content-Type': 'application/json', 
+            'cache-control': 'no-cache',
+            'Authorization': 'Bearer APP_USR-a10b7367-f4d9-4fcd-b209-6b498100cf0c', 
         	'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
         };
 
