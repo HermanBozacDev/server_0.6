@@ -1,9 +1,9 @@
 import express from 'express';
 import Admin from '../models/admin.js'; // Modelo de usuario
-
+import { verifySuperAdminToken } from '../middlewares/auth.js'; // Importamos el middleware que verifica el token de superadmin
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/', verifySuperAdminToken, async (req, res) => {
   console.log('[GET] /adminUsers - Solicitud recibida');
   
   try {
