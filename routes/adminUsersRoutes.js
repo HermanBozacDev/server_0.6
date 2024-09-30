@@ -3,7 +3,7 @@ import Admin from '../models/admin.js'; // Modelo de usuario
 
 const router = express.Router();
 
-router.get('/adminUsers', async (req, res) => {
+router.get('/', async (req, res) => {
   console.log('[GET] /adminUsers - Solicitud recibida');
   
   try {
