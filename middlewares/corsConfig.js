@@ -2,9 +2,7 @@
 import cors from 'cors';
 
 // Lista de orígenes permitidos
-
 const allowedOrigins = ['https://www.imperioticket.com', 'https://imperioticket.com'];
-
 
 // Configuración de CORS
 export const configureCors = () => {
@@ -18,6 +16,11 @@ export const configureCors = () => {
             }
         },
         credentials: true, // Si necesitas enviar cookies o autenticación
+        allowedHeaders: [
+            'Content-Type',   // Necesario para solicitudes POST con JSON
+            'Authorization',  // Si usas tokens de autenticación
+            'x-integrator-id' // Header personalizado que estás enviando
+        ],
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'] // Métodos HTTP permitidos
     });
 };
-
