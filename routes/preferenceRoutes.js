@@ -16,24 +16,20 @@ router.post("/", async (req, res) => {
         const { items, back_urls, auto_return, payment_methods, external_reference } = req.body;
 
         // Modificar los ítems según la configuración
-        const modifiedItems = modifyItems(items);
+        //const modifiedItems = modifyItems(items);
 
         // Datos de la preferencia de pago
         const paymentData = {
             items: modifiedItems,
             back_urls: {
-                success: back_urls.success || "https://www.imperioticket.com/api/success",
-                failure: back_urls.failure || "https://www.imperioticket.com/api/failure",
-                pending: back_urls.pending || "https://www.imperioticket.com/api/pending"
+                success: back_urls.success,
+                failure: back_urls.failure,
+                pending: back_urls.pending,
             },
-            auto_return: auto_return || "approved",
-            payment_methods: payment_methods || {
-                excluded_payment_methods: [{ id: "visa" }],
-                excluded_payment_types: [{ id: "atm" }],
-                installments: 6
-            },
-            external_reference: external_reference || "mi-referencia-external-12345",
-            notification_url: "https://www.imperioticket.com/api/notifications"
+            auto_return: auto_return,
+            payment_methods: payment_methods,
+            external_reference: external_reference,
+            notification_url: notification_url,
         };
 
         // Log de datos del request
