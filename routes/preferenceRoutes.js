@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
     try {
         const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
         const headers = {
-            'Authorization': req.headers['Authorization'],
             'x-integrator-id': req.headers['x-integrator-id'],
             
         };
