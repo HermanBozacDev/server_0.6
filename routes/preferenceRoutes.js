@@ -46,8 +46,7 @@ router.post("/", async (req, res) => {
 
 
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({ body, requestOptions })
-            body: paymentData,
+        const result = await preference.create({ paymentData, requestOptions })
 
 
         // Log de éxito
