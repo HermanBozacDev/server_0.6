@@ -38,15 +38,17 @@ router.post("/", async (req, res) => {
         // Log de datos del request
         console.log("[POST] /payment - Request body for creating preference:", paymentData);
 
-     
+             
+        // Step 5: Create request options object - Optional
+        const requestOptions = {
+        	'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
+        };
+
 
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({
+        const result = await preference.create({ body, requestOptions })
             body: paymentData,
-     //       requestOptions: {
-    //            headers: headers // Asegúrate de que esta propiedad se acepte en el SDK
-        //    }
-        })
+
 
         // Log de éxito
         console.log("[POST] /payment - Preference created successfully:", result);
