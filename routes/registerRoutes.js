@@ -31,12 +31,12 @@ router.post('/', async (req, res) => {
     console.log("[POST] /register - Contraseña cifrada");
 
     // Crear el nuevo usuario
-    const newUser = new Productor({ username, password: hashedPassword });
+    const newUser = new Productor({ username, password: hashedPassword, role });
     await newUser.save();
     console.log("[POST] /register - Usuario guardado en la base de datos");
 
     // Generar un token JWT
-    const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
+    const token = jwt.sign({ username, role }, SECRET_KEY, { expiresIn: '1h' });
     console.log("[POST] /register - Token JWT generado");
 
     // Responder con el token y la URL de redirección
