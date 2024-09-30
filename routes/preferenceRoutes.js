@@ -2,7 +2,7 @@
 
 import { Preference } from "mercadopago";
 import express from 'express';
-import { appConfig, modifyItems } from '../config.js';
+import { appConfig} from '../config.js';
 
 const router = express.Router();
 const client = appConfig.mercadoPago;
@@ -13,14 +13,11 @@ const client = appConfig.mercadoPago;
  */
 router.post("/", async (req, res) => {
     try {
-        const { items, back_urls, auto_return, payment_methods, external_reference } = req.body;
-
-        // Modificar los ítems según la configuración
-        //const modifiedItems = modifyItems(items);
-
+        const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
+        
         // Datos de la preferencia de pago
         const paymentData = {
-            items: modifiedItems,
+            items: items,
             back_urls: {
                 success: back_urls.success,
                 failure: back_urls.failure,
