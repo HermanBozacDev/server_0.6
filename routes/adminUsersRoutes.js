@@ -1,4 +1,4 @@
-
+import express from 'express';
 import Admin from '../models/admin.js'; // Modelo de usuario
 
 
