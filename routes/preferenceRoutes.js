@@ -36,17 +36,19 @@ router.post("/", async (req, res) => {
         console.log("[POST] /payment - Request body for creating preference:", paymentData);
 
              
-        // Step 5: Create request options object - Optional
-        const requestOptions = {
-            //'Content-Type': 'application/json', 
-            'cache-control': 'no-cache',
-            'Authorization': 'Bearer APP_USR-a10b7367-f4d9-4fcd-b209-6b498100cf0c', 
-        	'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
-        };
-
 
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({ paymentData, requestOptions })
+        const result = await preference.create({
+              body: paymentData,
+              requestOptions: {
+                headers: {
+                  'Content-Type': 'application/json',
+                  'cache-control': 'no-cache',
+                  'Authorization': 'Bearer APP_USR-a10b7367-f4d9-4fcd-b209-6b498100cf0c', 
+                  'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
+                }
+              }
+            });
 
 
         // Log de éxito
