@@ -17,6 +17,7 @@ import panelRoutes from './routes/panelProductorRoutes.js';
 import eventosRoutes from './routes/eventosRoutes.js';
 import loginAdminRoutes from './routes/loginAdminRoutes.js';
 import registerAdminRoutes from './routes/registerAdminRoutes.js';
+import adminUsersRoutes from './routes/adminUsersRoutes.js';
 
 //SERVICIOS
 import express from "express";
@@ -42,5 +43,7 @@ app.use('/api/panelAdminEvento', panelRoutes);
 app.use('/api/eventos', eventosRoutes);
 app.use('/api/loginAdmin', loginAdminRoutes);
 app.use('/api/registerAdmin', registerAdminRoutes);
+app.use('/api/adminUsersRoutes', adminUsersRoutes);
+
 //PUERTO
 app.listen(3000, () => {console.log('Servidor escuchando en el puerto 3000');});
