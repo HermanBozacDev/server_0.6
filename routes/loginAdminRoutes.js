@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
     // Generar un token JWT
     console.log('[POST] /loginAdmin - Generando token JWT para usuario:', username);
     const token = jwt.sign(
-      { username: user.username, id: user._id }, 
+      { username: user.username, id: user._id, role: "superadmin" }, 
       SECRET_KEY, 
       { expiresIn: '1h' }
     );
