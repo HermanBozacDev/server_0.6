@@ -31,7 +31,7 @@ router.post('/', async (req, res) => {
     console.log("[POST] /registerAdmin - Contraseña cifrada");
 
     // Crear el nuevo usuario
-    const newUser = new Admin({ username, password: hashedPassword });
+    const newUser = new Admin({ username, password: hashedPassword, role: "superadmin"});
     await newUser.save();
     console.log("[POST] /registerAdmin - Usuario guardado en la base de datos");
 
