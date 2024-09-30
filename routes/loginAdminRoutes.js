@@ -18,18 +18,18 @@ router.post('/', async (req, res) => {
 
   try {
     // Buscar al usuario por su username
-    console.log('[POST] /login - Buscando usuario:', username);
+    console.log('[POST] /loginAdmin - Buscando usuario:', username);
     const user = await Admin.findOne({ username });
     if (!user) {
-      console.log('[POST] /login - Usuario no encontrado:', username);
+      console.log('[POST] /loginAdmin - Usuario no encontrado:', username);
       return res.status(400).json({ message: 'Usuario no encontrado' });
     }
 
     // Verificar si la contraseña es correcta
-    console.log('[POST] /login - Verificando contraseña para usuario:', username);
+    console.log('[POST] /loginAdmin - Verificando contraseña para usuario:', username);
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      console.log('[POST] /login - Contraseña incorrecta para usuario:', username);
+      console.log('[POST] /loginAdmin - Contraseña incorrecta para usuario:', username);
       return res.status(400).json({ message: 'Contraseña incorrecta' });
     }
 
