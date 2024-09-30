@@ -14,13 +14,13 @@ const client = appConfig.mercadoPago;
 router.post("/", async (req, res) => {
     try {
         const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
-        const headers = {
-            'x-integrator-id': req.headers['x-integrator-id'],
-            
-        };
+        //const headers = {
+        //    'x-integrator-id': req.headers['x-integrator-id'],
+        //    
+       // };
 
         // Log de headers para ver qué valores llegan
-        console.log("/Headers recibidos!!!!:", headers);
+       // console.log("/Headers recibidos!!!!:", headers);
         // Datos de la preferencia de pago
         const paymentData = {
             items: items,
@@ -43,9 +43,9 @@ router.post("/", async (req, res) => {
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
         const result = await preference.create({
             body: paymentData,
-            requestOptions: {
-                headers: headers // Asegúrate de que esta propiedad se acepte en el SDK
-            }
+     //       requestOptions: {
+    //            headers: headers // Asegúrate de que esta propiedad se acepte en el SDK
+        //    }
         })
 
         // Log de éxito
