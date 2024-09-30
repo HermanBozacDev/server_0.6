@@ -38,8 +38,15 @@ router.post("/", async (req, res) => {
              
 
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({
-              body: paymentData });
+         const result = await preference.create({
+        body: paymentData,
+        headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
+            'Authorization': 'Bearer APP_USR-3208588231811361-091423-58ab2b5fd537c43af8c128413d6d9e4f-1990229297',
+            'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
+        },
+    });
 
 
         // Log de éxito
