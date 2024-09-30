@@ -14,10 +14,7 @@ export const appConfig = {
         options: {
             timeout: 5000,
         }
-    }),
-    mercadoPago.configure({
-    integrator_id: 'dev_24c65fb163bf11ea96500242ac130004',
-});
+    })
 };
 
 
