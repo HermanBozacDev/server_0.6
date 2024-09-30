@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
     }
 
     // Generar un token JWT
-    console.log('[POST] /login - Generando token JWT para usuario:', username);
+    console.log('[POST] /loginAdmin - Generando token JWT para usuario:', username);
     const token = jwt.sign(
       { username: user.username, id: user._id }, 
       SECRET_KEY, 
@@ -42,7 +42,7 @@ router.post('/', async (req, res) => {
     );
 
     // Responder con el token
-    console.log('[POST] /login - Inicio de sesión exitoso, enviando token');
+    console.log('[POST] /loginAdmin - Inicio de sesión exitoso, enviando token');
     res.status(200).json({ message: 'Login exitoso', token });
   } catch (error) {
     console.error('[POST] /login - Error al iniciar sesión:', error);
