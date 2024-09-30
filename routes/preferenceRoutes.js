@@ -14,7 +14,9 @@ const client = appConfig.mercadoPago;
 router.post("/", async (req, res) => {
     try {
         const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
-        const headers = req.headers; // Aquí obtienes los headers enviados desde el frontend
+        const headers = {
+            'x-integrator-id': req.headers['x-integrator-id'] // Extrae el integrador ID desde los headers
+        };
 
         // Log de headers para ver qué valores llegan
         console.log("Headers recibidos:", headers);
