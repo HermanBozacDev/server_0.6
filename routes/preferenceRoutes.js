@@ -14,7 +14,10 @@ const client = appConfig.mercadoPago;
 router.post("/", async (req, res) => {
     try {
         const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
-        
+        const headers = req.headers; // Aquí obtienes los headers enviados desde el frontend
+
+        // Log de headers para ver qué valores llegan
+        console.log("Headers recibidos:", headers);
         // Datos de la preferencia de pago
         const paymentData = {
             items: items,
@@ -35,7 +38,10 @@ router.post("/", async (req, res) => {
      
 
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({ body: paymentData });
+        const result = await preference.create({ 
+            body: paymentData,
+            headers: headers 
+        });
 
         // Log de éxito
         console.log("[POST] /payment - Preference created successfully:", result);
