@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
         };
 
         // Log de headers para ver qué valores llegan
-        console.log("Headers recibidos:", headers);
+        console.log("/Headers recibidos!!!!:", headers);
         // Datos de la preferencia de pago
         const paymentData = {
             items: items,
@@ -40,10 +40,12 @@ router.post("/", async (req, res) => {
      
 
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({ 
+        const result = await preference.create({
             body: paymentData,
-            headers: headers 
-        });
+            requestOptions: {
+                headers: headers // Asegúrate de que esta propiedad se acepte en el SDK
+            }
+        })
 
         // Log de éxito
         console.log("[POST] /payment - Preference created successfully:", result);
