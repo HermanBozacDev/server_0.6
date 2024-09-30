@@ -8,7 +8,7 @@ import { SECRET_KEY } from '../config.js'; // Asegúrate de importar SECRET_KEY 
 const router = express.Router();
 
 /**
- * POST /register
+ * POST /registerAdmin
  * Ruta para registrar un nuevo usuario. Cifra la contraseña y guarda el nuevo usuario en la base de datos.
  * Responde con un token JWT y una URL de redirección.
  */
