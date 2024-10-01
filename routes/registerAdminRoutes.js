@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
     res.status(201).json({
       message: 'UsuarioAdmin registrado exitosamente',
       token,
-      redirectUrl: 'https://www.imperioticket.com/panelAdminEvento'
+      redirectUrl: 'https://www.imperioticket.com/panelAdmin'
     });
   } catch (error) {
     console.error("[POST] /registerAdmin - Error al registrar usuario:", error);
