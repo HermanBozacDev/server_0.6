@@ -59,7 +59,7 @@ export const verifyProducerToken = (req, res, next) => {
     console.log('[verifyProducerToken] Token decodificado:', decoded);
 
     // Verificar el rol del usuario
-    if (decoded.role !== 'producer') {
+    if (decoded.role !== 'productor') {
       console.log('[verifyProducerToken] Rol no autorizado:', decoded.role);
       return res.status(403).json({ message: 'No autorizado' });
     }
