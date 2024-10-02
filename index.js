@@ -61,10 +61,10 @@ app.use('/api/productorUsers', productorUserRoutes);
 app.use('/api/productorDelete', productorDeleteRoutes);
 
 //RUTAS DE ADMINISTRACION
-app.use('/api/adminRegister', registerAdminRoutes);
-app.use('/api/adminLogin', loginAdminRoutes);
-app.use('/api/adminUsers', adminUsersRoutes);
-app.use('/api/adminDelete', adminDeleteRoutes);
+app.use('/api/adminRegister', adminRegister);
+app.use('/api/adminLogin', adminLogin);
+app.use('/api/adminUsers', adminUsers);
+app.use('/api/adminDelete', adminDelete);
 
 
 
