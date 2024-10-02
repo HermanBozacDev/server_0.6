@@ -12,10 +12,10 @@ const router = express.Router();
  * Ruta para registrar un nuevo usuario. Cifra la contraseña y guarda el nuevo usuario en la base de datos.
  * Responde con un token JWT y una URL de redirección.
  */
-router.post('/', verifySuperAdminToken,  async (req, res) => {  
+router.post('/', verifySuperAdminToken, async (req, res) => {  
   const { username, password, role } = req.body;
+
   try {
-    // Verificar si el usuario ya existe
     const existingUser = await Productor.findOne({ username });
     if (existingUser) {
       console.warn("[POST] /register - Usuario ya existe:", username);
@@ -24,24 +24,16 @@ router.post('/', verifySuperAdminToken,  async (req, res) => {
 
     console.log("[POST] /register - Usuario no existe, procediendo a crear uno nuevo");
 
-    // Cifrar la contraseña antes de guardarla
     const hashedPassword = await bcrypt.hash(password, 10);
     console.log("[POST] /register - Contraseña cifrada");
 
-    // Crear el nuevo usuario
     const newUser = new Productor({ username, password: hashedPassword, role });
     await newUser.save();
     console.log("[POST] /register - Usuario guardado en la base de datos");
 
-    // Generar un token JWT
-    const token = jwt.sign({ username, role }, SECRET_KEY, { expiresIn: '1h' });
-    console.log("[POST] /register - Token JWT generado");
-
-    // Responder con el token y la URL de redirección
+    // Responder sin token ni redirección
     res.status(201).json({
-      message: 'Usuario registrado exitosamente',
-      token,
-      redirectUrl: 'https://www.imperioticket.com/panelAdminEvento'
+      message: 'Usuario registrado exitosamente'
     });
   } catch (error) {
     console.error("[POST] /register - Error al registrar usuario:", error);
