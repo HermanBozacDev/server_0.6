@@ -13,6 +13,7 @@ const router = express.Router();
  * Responde con un token JWT y una URL de redirección.
  */
 router.post('/', verifySuperAdminToken,  async (req, res) => {  
+  const { username, password, role } = req.body;
   try {
     // Verificar si el usuario ya existe
     const existingUser = await Productor.findOne({ username });
