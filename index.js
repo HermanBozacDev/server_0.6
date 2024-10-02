@@ -49,7 +49,7 @@ app.use('/api/registerAdmin', registerAdminRoutes);
 app.use('/api/adminUsers', adminUsersRoutes);
 app.use('/api/productorUsers', productorUserRoutes);
 app.use('/api/productorDelete', productorDeleteRoutes);
-productorDelete
+
 
 //PUERTO
 app.listen(3000, () => {console.log('Servidor escuchando en el puerto 3000');});
