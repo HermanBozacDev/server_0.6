@@ -26,10 +26,10 @@ import productorDeleteRoutes from './routes/productorDeleteRoutes.js';
 //RUTAS DE LA ADMINISTRACION
 
 
-import registerAdminRoutes from './routes/admin/registerAdminRoutes.js';
-import loginAdminRoutes from './routes/admin/loginAdminRoutes.js';
-import adminUsersRoutes from './routes/admin/adminUsersRoutes.js';
-import adminDeleteRoutes from './routes/admin/adminDeleteRoutes.js';
+import adminRegister from './routes/admin/adminRegisterRoutes.js';
+import adminLogin    from './routes/admin/adminLoginRoutes.js';
+import adminUsers    from './routes/admin/adminUsersRoutes.js';
+import adminDelete   from './routes/admin/adminDeleteRoutes.js';
 
 
 //SERVICIOS
@@ -50,16 +50,23 @@ app.use('/api/display-qr', qrRoutes);
 app.use('/api/pending', pendingRoutes);
 app.use('/api/failure', failureRoutes);
 app.use('/api/create_preference', preferenceRoutes);
-app.use('/api/register', registerRoutes);
-app.use('/api/login',loginRoutes);
+
 app.use('/api/panelAdminEvento', panelRoutes);
 app.use('/api/eventos', eventosRoutes);
-app.use('/api/loginAdmin', loginAdminRoutes);
-app.use('/api/registerAdmin', registerAdminRoutes);
-app.use('/api/adminUsers', adminUsersRoutes);
+
+//RUTAS DE PRODUCTORES
+app.use('/api/register', registerRoutes);
+app.use('/api/login',loginRoutes);
 app.use('/api/productorUsers', productorUserRoutes);
 app.use('/api/productorDelete', productorDeleteRoutes);
+
+//RUTAS DE ADMINISTRACION
+app.use('/api/adminRegister', registerAdminRoutes);
+app.use('/api/adminLogin', loginAdminRoutes);
+app.use('/api/adminUsers', adminUsersRoutes);
 app.use('/api/adminDelete', adminDeleteRoutes);
+
+
 
 
 //PUERTO
