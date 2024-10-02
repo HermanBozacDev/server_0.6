@@ -1,7 +1,7 @@
 // routes/adminDeleteRoutes.js
 import express from 'express';
-import Admin from '../models/admin.js'; // Asegúrate de tener este modelo definido
-import { verifySuperAdminToken } from '../middlewares/auth.js';
+import Admin from '../../models/admin.js'; // Asegúrate de tener este modelo definido
+import { verifySuperAdminToken } from '../../middlewares/auth.js';
 const router = express.Router();
 
 /**
