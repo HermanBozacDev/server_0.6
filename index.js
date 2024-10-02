@@ -20,7 +20,7 @@ import registerAdminRoutes from './routes/registerAdminRoutes.js';
 import adminUsersRoutes from './routes/adminUsersRoutes.js';
 import productorUserRoutes from './routes/productorRoutes.js';
 import productorDeleteRoutes from './routes/productorDeleteRoutes.js';
-
+import adminDeleteRoutes from './routes/adminDeleteRoutes.js';
 
 //SERVICIOS
 import express from "express";
@@ -49,6 +49,7 @@ app.use('/api/registerAdmin', registerAdminRoutes);
 app.use('/api/adminUsers', adminUsersRoutes);
 app.use('/api/productorUsers', productorUserRoutes);
 app.use('/api/productorDelete', productorDeleteRoutes);
+app.use('/api/adminDelete', adminDeleteRoutes);
 
 
 //PUERTO
