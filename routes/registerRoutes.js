@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import Productor from '../models/productores.js'; // Asegúrate de tener este modelo definido
 import { SECRET_KEY } from '../config.js'; // Asegúrate de importar SECRET_KEY desde tu archivo de configuración
-import { verifyProducerToken } from '../middlewares/auth.js';
+import { verifySuperAdminToken  } from '../middlewares/auth.js';
 const router = express.Router();
 
 /**
@@ -12,7 +12,7 @@ const router = express.Router();
  * Ruta para registrar un nuevo usuario. Cifra la contraseña y guarda el nuevo usuario en la base de datos.
  * Responde con un token JWT y una URL de redirección.
  */
-router.post('/', verifyProducerToken,  async (req, res) => {  
+router.post('/', verifySuperAdminToken,  async (req, res) => {  
   try {
     // Verificar si el usuario ya existe
     const existingUser = await Productor.findOne({ username });
