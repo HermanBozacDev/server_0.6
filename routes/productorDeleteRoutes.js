@@ -8,7 +8,7 @@ const router = express.Router();
  * DELETE /producers/:id
  * Ruta para eliminar un usuario productor. 
  */
-router.delete('/', verifySuperAdminToken, async (req, res) => {
+router.delete('/:id', verifySuperAdminToken, async (req, res) => {
   const { id } = req.params;
 
   try {
