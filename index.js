@@ -11,16 +11,26 @@ import qrRoutes from './routes/qrRoutes.js';
 import pendingRoutes from './routes/pendingRoutes.js';
 import failureRoutes from './routes/failureRoutes.js';
 import preferenceRoutes from './routes/preferenceRoutes.js';// Endpoint para registrar usuarios
+
+import eventosRoutes from './routes/eventosRoutes.js';
+
+
+//RUTAS DE PRODUCTORES
+import panelRoutes from './routes/panelProductorRoutes.js';
 import registerRoutes from './routes/registerRoutes.js';
 import loginRoutes from './routes/loginRoutes.js';
-import panelRoutes from './routes/panelProductorRoutes.js';
-import eventosRoutes from './routes/eventosRoutes.js';
-import loginAdminRoutes from './routes/loginAdminRoutes.js';
-import registerAdminRoutes from './routes/registerAdminRoutes.js';
-import adminUsersRoutes from './routes/adminUsersRoutes.js';
 import productorUserRoutes from './routes/productorRoutes.js';
 import productorDeleteRoutes from './routes/productorDeleteRoutes.js';
-import adminDeleteRoutes from './routes/adminDeleteRoutes.js';
+
+
+//RUTAS DE LA ADMINISTRACION
+
+
+import registerAdminRoutes from './routes/admin/registerAdminRoutes.js';
+import loginAdminRoutes from './routes/admin/loginAdminRoutes.js';
+import adminUsersRoutes from './routes/admin/adminUsersRoutes.js';
+import adminDeleteRoutes from './routes/admin/adminDeleteRoutes.js';
+
 
 //SERVICIOS
 import express from "express";
