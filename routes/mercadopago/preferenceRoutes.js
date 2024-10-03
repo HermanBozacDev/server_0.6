@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
         //{headers:{'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',}}
         
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({payment,{headers:{'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',}}});
+        const result = await preference.create({payment,headers:{'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',}});
 
 
         // Log de éxito
