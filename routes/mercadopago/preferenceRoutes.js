@@ -44,7 +44,7 @@ router.post("/", async (req, res) => {
             'Content-Type': 'application/json',
             'Cache-Control': 'no-cache',
             'Authorization': 'Bearer APP_USR-3208588231811361-091423-58ab2b5fd537c43af8c128413d6d9e4f-1990229297',
-            'x-integrator-id': 'dev_24c65fb163bf11ea96500242ac130004',
+            'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
         },
     });
 
