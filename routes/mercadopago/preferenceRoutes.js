@@ -31,9 +31,9 @@ router.post("/", async (req, res) => {
         // Log de datos del request 'Authorization': 'Bearer APP_USR-3208588231811361-091423-58ab2b5fd537c43af8c128413d6d9e4f-1990229297','Content-Type': 'application/json',  'Cache-Control': 'no-cache', 
         console.log("[POST] /payment - Request body for creating preference:", paymentData);
 
-
+        //{headers:{'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',}}
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create(paymentData,{headers:{'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',}});
+        const result = await preference.create(paymentData);
 
 
         // Log de éxito
