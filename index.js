@@ -6,7 +6,6 @@ import { SECRET_KEY } from './config.js';
 import connectDB from './database/database.js';
 //RUTAS
 import notificationRoutes from './routes/notificationRoutes.js';
-import successRoutes from './routes/successRoutes.js';
 import qrRoutes from './routes/qrRoutes.js';
 import eventosRoutes from './routes/eventosRoutes.js';
 import panelRoutes from './routes/panelProductorRoutes.js';
