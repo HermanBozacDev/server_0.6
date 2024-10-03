@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
             notification_url: notification_url,
         };
         // Log de datos del request
-        console.log("[POST] /payment - Request body for creating preference:", paymentData);
+        console.log("[POST] /payment - Request body for creating preference:", body);
 
                 // Step 5: Create request options object - Optional
         const requestOptions = {
