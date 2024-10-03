@@ -40,9 +40,9 @@ router.post("/", async (req, res) => {
              
         const config = {headers: {'Content-Type': 'application/json','X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004'}};
 
-        const body = paymentData
+        
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create(body,config);
+        const result = await preference.create(paymentData,config);
 
 
         // Log de éxito
