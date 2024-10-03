@@ -12,10 +12,10 @@ import eventosRoutes from './routes/eventosRoutes.js';
 import panelRoutes from './routes/panelProductorRoutes.js';
 
 //RUTAS DE MERCADO PAGO
-import preferenceRoutes from './routes/preferenceRoutes.js';
-import pendingRoutes from './routes/pendingRoutes.js';
-import failureRoutes from './routes/failureRoutes.js';
-import successRoutes from './routes/successRoutes.js';
+import preferenceRoutes from './routes/mercadopago/preferenceRoutes.js';
+import pendingRoutes    from './routes/mercadopago/pendingRoutes.js';
+import failureRoutes    from './routes/mercadopago/failureRoutes.js';
+import successRoutes    from './routes/mercadopago/successRoutes.js';
 
 //RUTAS DE PRODUCTORES
 import productorRegister from './routes/productor/productorRegisterRoutes.js';
