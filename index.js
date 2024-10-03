@@ -17,10 +17,11 @@ import eventosRoutes from './routes/eventosRoutes.js';
 
 //RUTAS DE PRODUCTORES
 import panelRoutes from './routes/panelProductorRoutes.js';
-import registerRoutes from './routes/registerRoutes.js';
-import loginRoutes from './routes/loginRoutes.js';
-import productorUserRoutes from './routes/productorRoutes.js';
-import productorDeleteRoutes from './routes/productorDeleteRoutes.js';
+
+import productorRegister from './routes/productor/productorRegisterRoutes.js';
+import productorLogin    from './routes/productor/productorLoginRoutes.js';
+import productorUsers    from './routes/productor/productorUsersRoutes.js';
+import productorDelete   from './routes/productor/productorDeleteRoutes.js';
 
 
 //RUTAS DE LA ADMINISTRACION
@@ -55,10 +56,10 @@ app.use('/api/panelAdminEvento', panelRoutes);
 app.use('/api/eventos', eventosRoutes);
 
 //RUTAS DE PRODUCTORES
-app.use('/api/register', registerRoutes);
-app.use('/api/login',loginRoutes);
-app.use('/api/productorUsers', productorUserRoutes);
-app.use('/api/productorDelete', productorDeleteRoutes);
+app.use('/api/productorRegister', productorRegister);
+app.use('/api/productorLogin',productorLogin);
+app.use('/api/productorUsers', productorUsers);
+app.use('/api/productorDelete', productorDelete);
 
 //RUTAS DE ADMINISTRACION
 app.use('/api/adminRegister', adminRegister);
