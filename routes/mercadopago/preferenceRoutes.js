@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
 
                 // Step 5: Create request options object - Optional
         const requestOptions = {
-        	idempotencyKey: 'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
+        	'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
         };
         
         //const result = await preference.create({body: paymentData,       headers: {            ,        },    });
