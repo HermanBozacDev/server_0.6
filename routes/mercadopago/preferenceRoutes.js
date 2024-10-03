@@ -14,12 +14,8 @@ const client = appConfig.mercadoPago;
 router.post("/", async (req, res) => {
     try {
         const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
-
-
-        // Log de headers para ver qué valores llegan
-       // console.log("/Headers recibidos!!!!:", headers);
-        // Datos de la preferencia de pago
-        const paymentData = {
+        const preference = new Preference(client);
+        const body = {
             items: items,
             back_urls: {
                 success: back_urls.success,
@@ -31,25 +27,22 @@ router.post("/", async (req, res) => {
             external_reference: external_reference,
             notification_url: notification_url,
         };
-
         // Log de datos del request
         console.log("[POST] /payment - Request body for creating preference:", paymentData);
 
+                // Step 5: Create request options object - Optional
+        const requestOptions = {
+        	idempotencyKey: 'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
+        };
+        
+        //const result = await preference.create({body: paymentData,       headers: {            ,        },    });
 
-
-        const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-         const result = await preference.create({
-        body: paymentData,
-        headers: {
-            'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
-        },
-    });
-
+        preference.create({ body, requestOptions }).then(console.log("asd")).catch(console.log("qwe");
 
         // Log de éxito
-        console.log("[POST] /payment - Preference created successfully:", result);
-
+        //console.log("[POST] /payment - Preference created successfully:", result);
         // Responder con el ID de la preferencia creada
+    
         res.json({ id: result.id });
     } catch (error) {
         console.error("[POST] /payment - Error al crear la preferencia:", error);
