@@ -35,15 +35,8 @@ router.post("/", async (req, res) => {
         	'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
         };
         
-        const result = await preference.create({ body, requestOptions }),
+        const result = await preference.create({ body, requestOptions });
 
-        .then(console.log("asd")),
-        .catch(console.log("qwe")),
-
-        // Log de éxito
-        //console.log("[POST] /payment - Preference created successfully:", result);
-        // Responder con el ID de la preferencia creada
-    
         res.json({ id: result.id });
     } catch (error) {
         console.error("[POST] /payment - Error al crear la preferencia:", error);
