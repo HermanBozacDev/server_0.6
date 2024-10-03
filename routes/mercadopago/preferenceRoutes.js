@@ -1,4 +1,4 @@
-,// routes/preferenceRoutes.js
+// routes/preferenceRoutes.js
 
 import { Preference } from "mercadopago";
 import express from 'express';
@@ -38,13 +38,7 @@ router.post("/", async (req, res) => {
           //  'Cache-Control': 'no-cache',
          //   'Authorization': 'Bearer APP_USR-3208588231811361-091423-58ab2b5fd537c43af8c128413d6d9e4f-1990229297',
              
-        const config = {
-            headers: {
-                
-                'Content-Type': 'application/json',
-                'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004'
-            }
-        };
+        const config = {headers: {'Content-Type': 'application/json','X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004'}};
 
         const body = paymentData
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
