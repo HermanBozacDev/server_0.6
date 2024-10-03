@@ -14,6 +14,10 @@ const client = appConfig.mercadoPago;
 router.post("/", async (req, res) => {
     try {
         const { items, back_urls, auto_return, payment_methods, external_reference, notification_url } = req.body;
+
+
+        // Log de headers para ver qué valores llegan
+       // console.log("/Headers recibidos!!!!:", headers);
         // Datos de la preferencia de pago
         const paymentData = {
             items: items,
@@ -28,13 +32,18 @@ router.post("/", async (req, res) => {
             notification_url: notification_url,
         };
 
-        // Log de datos del request 'Authorization': 'Bearer APP_USR-3208588231811361-091423-58ab2b5fd537c43af8c128413d6d9e4f-1990229297','Content-Type': 'application/json',  'Cache-Control': 'no-cache', 
+        // Log de datos del request
         console.log("[POST] /payment - Request body for creating preference:", paymentData);
 
-        //{headers:{'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',}}
-        
+
+
         const preference = new Preference(client); // Verifica que `client` esté correctamente definido
-        const result = await preference.create({payment,headers:{'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',}});
+         const result = await preference.create({
+        body: paymentData,
+        headers: {
+            'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
+        },
+    });
 
 
         // Log de éxito
