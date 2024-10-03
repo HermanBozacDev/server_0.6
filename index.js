@@ -35,7 +35,7 @@ connectDB();
 //CONSTANTES
 const app = express();
 const port = appConfig.port;
-const client = appConfig.mercadoPago;
+//const client = appConfig.mercadoPago;
 console.log(client)
 //APPS
 app.use(express.json());
