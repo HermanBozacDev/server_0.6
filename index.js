@@ -5,7 +5,6 @@ import { verifyToken, SECRET_KEY  } from './config.js';
 import connectDB from './database/database.js';
 //RUTAS
 import notificationRoutes from './routes/notificationRoutes.js';
-import qrRoutes from './routes/qrRoutes.js';
 import eventosRoutes from './routes/eventosRoutes.js';
 import panelRoutes from './routes/panelProductorRoutes.js';
 
@@ -39,7 +38,6 @@ const port = appConfig.port;
 app.use(express.json());
 app.use(configureCors());
 app.use('/api/notifications', notificationRoutes);
-app.use('/api/display-qr', qrRoutes);
 app.use('/api/panelAdminEvento', panelRoutes);
 app.use('/api/eventos', eventosRoutes);
 
