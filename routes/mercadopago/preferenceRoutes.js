@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
 
                 // Step 5: Create request options object - Optional
         const requestOptions = {
-        	'X-Integrator-Id': 'dev_24c65fb163bf11ea96500242ac130004',
+        	'integratorId': 'dev_24c65fb163bf11ea96500242ac130004',
         };
         
         const result = await preference.create({ body, requestOptions });
