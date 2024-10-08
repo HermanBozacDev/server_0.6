@@ -4,7 +4,7 @@ import express from 'express';
 import QRCode from 'qrcode';
 import { transporter } from '../../config.js'; // Asegúrate de que el transporter esté exportado correctamente en config.js
 import Venta from '../../models/ventas.js'; // Modelo para guardar la información de la venta en la base de datos
-
+//tengo que aplicar logica. cantidad de items vendidos. para saber cuantos qr generar
 const router = express.Router();
 
 router.get("/", async (req, res) => {
