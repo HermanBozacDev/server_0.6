@@ -31,6 +31,8 @@ import uploads   from './routes/assets/assetsRoutes.js';
 import uploadImage from './routes/assets/assetsRoutes.js';
 //SERVICIOS
 import express from "express";
+import multer from 'multer';
+
 //DATABASES
 connectDB();
 //CONSTANTES
@@ -65,7 +67,7 @@ app.use('/api/emailService', emailService);
 
 
 // Servir archivos estáticos desde el directorio 'uploads'
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/uploadImage', uploadImage);
 
 //PUERTO
