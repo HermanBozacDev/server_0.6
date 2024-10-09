@@ -4,7 +4,7 @@ import QRCode from 'qrcode';
 
 const router = express.Router();
 
-router.post("/generarQR", async (req, res) => {
+router.post("/", async (req, res) => {
     const ticketData = req.body;
 
     try {
