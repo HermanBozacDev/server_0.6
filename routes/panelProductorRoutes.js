@@ -7,7 +7,7 @@ const router = express.Router();
  * GET /api/panelAdminEvento
  * Ruta protegida por JWT, accesible solo para usuarios autenticados.
  */
-router.get('/api/panelAdminEvento', verifyToken, (req, res) => {
+router.get('/', verifyToken, (req, res) => {
   console.log('[GET] /api/panelAdminEvento - Acceso autorizado al panel de administración');
 
   // Solo usuarios autenticados pueden acceder aquí
