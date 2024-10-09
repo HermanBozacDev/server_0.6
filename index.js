@@ -27,6 +27,8 @@ import adminUsers    from './routes/admin/adminUsersRoutes.js';
 import adminDelete   from './routes/admin/adminDeleteRoutes.js';
 
 
+import uploads   from './routes/assets/assetsRoutes.js';
+
 //SERVICIOS
 import express from "express";
 //DATABASES
@@ -62,6 +64,8 @@ app.use('/api/adminDelete', adminDelete);
 app.use('/api/emailService', emailService);
 
 
+// Servir archivos estáticos desde el directorio 'uploads'
+app.use('/uploads', express.static('uploads'));
 
 
 //PUERTO
