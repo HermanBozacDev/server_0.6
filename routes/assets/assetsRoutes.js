@@ -16,8 +16,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Ruta para subir imágenes
-router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image2', maxCount: 1 }]), (req, res) => {
+// Actualización de los campos para aceptar las tres imágenes
+router.post('/', upload.fields([
+  { name: 'image', maxCount: 1 }, 
+  { name: 'image2', maxCount: 1 },
+  { name: 'imageDetail', maxCount: 1 }  // Se agrega el tercer campo
+]), (req, res) => {
   // req.files contiene información sobre los archivos subidos
   if (req.files) {
     console.log('Imágenes subidas:', req.files); // Agregar el console.log aquí
