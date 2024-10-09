@@ -32,7 +32,7 @@ import uploadImage from './routes/assets/assetsRoutes.js';
 //SERVICIOS
 import express from "express";
 import multer from 'multer';
-
+import path from 'path';
 //DATABASES
 connectDB();
 //CONSTANTES
