@@ -33,6 +33,7 @@ import uploadImage from './routes/assets/assetsRoutes.js';
 import express from "express";
 import multer from 'multer';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 
 //DATABASES
@@ -41,6 +42,7 @@ connectDB();
 
 const app = express();
 const port = appConfig.port;
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //APPS
 app.use(express.json());
@@ -71,7 +73,7 @@ app.use('/api/emailService', emailService);
 
 
 // Servir archivos estáticos desde el directorio 'uploads'
-app.use('/uploads', express.static(path.join(_dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/uploadImage', uploadImage);
 
 //PUERTO
