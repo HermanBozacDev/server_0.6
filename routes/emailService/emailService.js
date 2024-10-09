@@ -4,7 +4,7 @@ import { transporter } from '../../../config.js'; // Configuración del transpor
 
 const router = express.Router();
 
-router.post("/enviarEmail", async (req, res) => {
+router.post("/", async (req, res) => {
     const { to, subject, text, attachments } = req.body;
 
     try {
