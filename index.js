@@ -6,7 +6,6 @@ import connectDB from './database/database.js';
 //RUTAS
 import notificationRoutes from './routes/notificationRoutes.js';
 import eventosRoutes from      './routes/eventosRoutes.js';
-import qrGenerator from        './routes/qrGenerator/qrGenerator.js';
 import emailService from       './routes/emailService/emailService.js';
 
 //RUTAS DE MERCADO PAGO
@@ -61,7 +60,6 @@ app.use('/api/adminDelete', adminDelete);
 
 //RUTAS QR Y EMAIL
 app.use('/api/emailService', emailService);
-app.use('/api/qrGenerator', qrGenerator);
 
 
 
