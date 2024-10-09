@@ -1,6 +1,6 @@
 // routes/eventosRoutes.js
 import express from 'express';
-import Evento from '../models/eventos.js';
+import eventoRepository from '../repositories/eventoRepository.js';
 
 const router = express.Router();
 
@@ -12,12 +12,12 @@ const router = express.Router();
 router.get('/', async (req, res) => {
   console.log('[GET] /eventos - Iniciando obtención de eventos');
   try {
-    const eventos = await Evento.find(); // Encuentra todos los eventos
+    const eventos = await eventoRepository.getAllEventos(); // Usa el repositorio
     console.log(`[GET] /eventos - ${eventos.length} eventos encontrados`);
-    res.status(200).json(eventos); // Devuelve los eventos encontrados
+    res.status(200).json(eventos);
   } catch (error) {
-    console.error('[GET] /eventos - Error al obtener eventos:', error);
-    res.status(500).json({ message: 'Error al obtener eventos', error });
+    console.error('[GET] /eventos - Error al obtener eventos:', error.message);
+    res.status(500).json({ message: 'Error al obtener eventos', error: error.message });
   }
 });
 
@@ -29,13 +29,12 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
   console.log('[POST] /eventos - Iniciando creación de evento');
   try {
-    const nuevoEvento = new Evento(req.body); // Crea un nuevo evento con los datos del cuerpo de la solicitud
-    const eventoGuardado = await nuevoEvento.save(); // Guarda el evento en la base de datos
+    const eventoGuardado = await eventoRepository.createEvento(req.body); // Usa el repositorio
     console.log('[POST] /eventos - Evento guardado con éxito:', eventoGuardado);
-    res.status(201).json(eventoGuardado); // Responde con el evento guardado
+    res.status(201).json(eventoGuardado);
   } catch (error) {
-    console.error('[POST] /eventos - Error al crear el evento:', error);
-    res.status(500).json({ message: 'Error al crear el evento', error });
+    console.error('[POST] /eventos - Error al crear el evento:', error.message);
+    res.status(500).json({ message: 'Error al crear el evento', error: error.message });
   }
 });
 
@@ -47,16 +46,16 @@ router.post('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   console.log(`[GET] /eventos/${req.params.id} - Iniciando búsqueda de evento`);
   try {
-    const evento = await Evento.findById(req.params.id); // Busca el evento por su ID
+    const evento = await eventoRepository.getEventoById(req.params.id); // Usa el repositorio
     if (!evento) {
       console.log(`[GET] /eventos/${req.params.id} - Evento no encontrado`);
       return res.status(404).json({ message: 'Evento no encontrado' });
     }
     console.log(`[GET] /eventos/${req.params.id} - Evento encontrado:`, evento);
-    res.status(200).json(evento); // Responde con el evento encontrado
+    res.status(200).json(evento);
   } catch (error) {
-    console.error(`[GET] /eventos/${req.params.id} - Error al buscar el evento:`, error);
-    res.status(500).json({ message: 'Error al buscar el evento', error });
+    console.error(`[GET] /eventos/${req.params.id} - Error al buscar el evento:`, error.message);
+    res.status(500).json({ message: 'Error al buscar el evento', error: error.message });
   }
 });
 
@@ -68,16 +67,16 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   console.log(`[DELETE] /eventos/${req.params.id} - Iniciando eliminación de evento`);
   try {
-    const eventoEliminado = await Evento.findByIdAndDelete(req.params.id); // Elimina el evento por su ID
+    const eventoEliminado = await eventoRepository.deleteEvento(req.params.id); // Usa el repositorio
     if (!eventoEliminado) {
       console.log(`[DELETE] /eventos/${req.params.id} - Evento no encontrado`);
       return res.status(404).json({ message: 'Evento no encontrado' });
     }
     console.log(`[DELETE] /eventos/${req.params.id} - Evento eliminado con éxito`);
-    res.status(200).json({ message: 'Evento eliminado con éxito' }); // Confirma la eliminación
+    res.status(200).json({ message: 'Evento eliminado con éxito' });
   } catch (error) {
-    console.error(`[DELETE] /eventos/${req.params.id} - Error al eliminar el evento:`, error);
-    res.status(500).json({ message: 'Error al eliminar el evento', error });
+    console.error(`[DELETE] /eventos/${req.params.id} - Error al eliminar el evento:`, error.message);
+    res.status(500).json({ message: 'Error al eliminar el evento', error: error.message });
   }
 });
 
@@ -89,16 +88,16 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   console.log(`[PUT] /eventos/${req.params.id} - Iniciando modificación de evento`);
   try {
-    const eventoModificado = await Evento.findByIdAndUpdate(req.params.id, req.body, { new: true }); // Actualiza el evento por su ID
+    const eventoModificado = await eventoRepository.updateEvento(req.params.id, req.body); // Usa el repositorio
     if (!eventoModificado) {
       console.log(`[PUT] /eventos/${req.params.id} - Evento no encontrado`);
       return res.status(404).json({ message: 'Evento no encontrado' });
     }
     console.log(`[PUT] /eventos/${req.params.id} - Evento modificado con éxito:`, eventoModificado);
-    res.status(200).json(eventoModificado); // Responde con el evento modificado
+    res.status(200).json(eventoModificado);
   } catch (error) {
-    console.error(`[PUT] /eventos/${req.params.id} - Error al modificar el evento:`, error);
-    res.status(500).json({ message: 'Error al modificar el evento', error });
+    console.error(`[PUT] /eventos/${req.params.id} - Error al modificar el evento:`, error.message);
+    res.status(500).json({ message: 'Error al modificar el evento', error: error.message });
   }
 });
 
