@@ -1,8 +1,7 @@
 import express from 'express';
-import  multer from 'multer';
-import  patch from 'patch';
-
-const app = express();
+import multer from 'multer';
+import path from 'path'; // Asegúrate de importar path para manejar extensiones de archivos
+const router = express.Router();
 
 // Configuración de multer para almacenar archivos
 const storage = multer.diskStorage({
@@ -18,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Ruta para subir imágenes
-app.post('/uploadImage', upload.single('image'), (req, res) => {
+router.post('/uploadImage', upload.single('image'), (req, res) => {
   // req.file contiene información sobre el archivo subido
   if (req.file) {
     res.status(200).json({ message: 'Imagen subida con éxito', filePath: `/uploads/${req.file.filename}` });
@@ -27,5 +26,4 @@ app.post('/uploadImage', upload.single('image'), (req, res) => {
   }
 });
 
-// Servir archivos estáticos desde el directorio 'uploads'
-app.use('/uploads', express.static('uploads'));
+export default router;
