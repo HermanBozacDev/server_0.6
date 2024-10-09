@@ -20,12 +20,23 @@ const upload = multer({ storage: storage });
 router.post('/', upload.fields([
   { name: 'image', maxCount: 1 }, 
   { name: 'image2', maxCount: 1 },
-  { name: 'imageDetail', maxCount: 1 }  // Se agrega el tercer campo
+  { name: 'imageDetail', maxCount: 1 }
 ]), (req, res) => {
-  // req.files contiene información sobre los archivos subidos
   if (req.files) {
-    console.log('Imágenes subidas:', req.files); // Agregar el console.log aquí
-    res.status(200).json({ message: 'Imágenes subidas con éxito', filePaths: req.files });
+    // Construir rutas de archivo individuales
+    const filePath1 = req.files['image'] ? req.files['image'][0].path : null;
+    const filePath2 = req.files['image2'] ? req.files['image2'][0].path : null;
+    const filePathDetail = req.files['imageDetail'] ? req.files['imageDetail'][0].path : null;
+
+    console.log('Imágenes subidas:', { filePath1, filePath2, filePathDetail });
+    
+    // Responder con los paths de las imágenes
+    res.status(200).json({ 
+      message: 'Imágenes subidas con éxito', 
+      filePath1,
+      filePath2,
+      filePathDetail 
+    });
   } else {
     console.log('Error: No se recibió ningún archivo'); // Mensaje de error
     res.status(400).json({ message: 'Error al subir las imágenes' });
