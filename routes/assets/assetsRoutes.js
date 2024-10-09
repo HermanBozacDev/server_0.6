@@ -6,7 +6,7 @@ const router = express.Router();
 // Configuración de multer para almacenar archivos
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, '/uploads'); // Asegúrate de que este directorio exista y sea accesible
+    cb(null, './uploads'); // Asegúrate de que este directorio exista
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
@@ -17,14 +17,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Ruta para subir imágenes
-router.post('/', upload.single('image'), (req, res) => {
-  console.log('Recibiendo archivo de imagen...'); // Mensaje al iniciar la recepción
-  if (req.file) {
-    console.log('Imagen subida:', req.file); // Información sobre la imagen
-    res.status(200).json({ message: 'Imagen subida con éxito', filePath: `/uploads/${req.file.filename}` });
+router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'image2', maxCount: 1 }]), (req, res) => {
+  // req.files contiene información sobre los archivos subidos
+  if (req.files) {
+    console.log('Imágenes subidas:', req.files); // Agregar el console.log aquí
+    res.status(200).json({ message: 'Imágenes subidas con éxito', filePaths: req.files });
   } else {
     console.log('Error: No se recibió ningún archivo'); // Mensaje de error
-    res.status(400).json({ message: 'Error al subir la imagen' });
+    res.status(400).json({ message: 'Error al subir las imágenes' });
   }
 });
 
