@@ -43,7 +43,7 @@ router.post('/', async (req, res) => {
  * GET /:id
  * Busca un evento por su ID
  */
-router.get('/:id', async (req, res) => {
+router.get('/', async (req, res) => {
   console.log(`[GET] /eventos/${req.params.id} - Iniciando búsqueda de evento`);
   try {
     const evento = await eventoRepository.getEventoById(req.params.id); // Usa el repositorio
@@ -64,7 +64,7 @@ router.get('/:id', async (req, res) => {
  * DELETE /:id
  * Elimina un evento por su ID
  */
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
   console.log(`[DELETE] /eventos/${req.params.id} - Iniciando eliminación de evento`);
   try {
     const eventoEliminado = await eventoRepository.deleteEvento(req.params.id); // Usa el repositorio
@@ -85,7 +85,7 @@ router.delete('/:id', async (req, res) => {
  * PUT /:id
  * Modifica un evento por su ID
  */
-router.put('/:id', async (req, res) => {
+router.put('/', async (req, res) => {
   console.log(`[PUT] /eventos/${req.params.id} - Iniciando modificación de evento`);
   try {
     const eventoModificado = await eventoRepository.updateEvento(req.params.id, req.body); // Usa el repositorio
