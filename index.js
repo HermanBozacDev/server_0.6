@@ -6,7 +6,6 @@ import connectDB from './database/database.js';
 //RUTAS
 import notificationRoutes from './routes/notificationRoutes.js';
 import eventosRoutes from './routes/eventosRoutes.js';
-import panelRoutes from './routes/panelProductorRoutes.js';
 
 //RUTAS DE MERCADO PAGO
 import preferenceRoutes from './routes/mercadopago/preferenceRoutes.js';
@@ -38,7 +37,6 @@ const port = appConfig.port;
 app.use(express.json());
 app.use(configureCors());
 app.use('/api/notifications', notificationRoutes);
-app.use('/api/panelAdminEvento', panelRoutes);
 app.use('/api/eventos', eventosRoutes);
 
 //RUTAS DE MERCADO PAGO
