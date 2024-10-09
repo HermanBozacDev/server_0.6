@@ -64,7 +64,7 @@ router.get('/', async (req, res) => {
  * DELETE /:id
  * Elimina un evento por su ID
  */
-router.delete('/', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   console.log(`[DELETE] /eventos/${req.params.id} - Iniciando eliminación de evento`);
   try {
     const eventoEliminado = await eventoRepository.deleteEvento(req.params.id); // Usa el repositorio
