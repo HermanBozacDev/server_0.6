@@ -5,7 +5,9 @@ import { verifyToken, SECRET_KEY  } from './config.js';
 import connectDB from './database/database.js';
 //RUTAS
 import notificationRoutes from './routes/notificationRoutes.js';
-import eventosRoutes from './routes/eventosRoutes.js';
+import eventosRoutes from      './routes/eventosRoutes.js';
+import qrGenerator from        './routes/qrGenerator/qrGenerator.js';
+import emailService from       './routes/emailService/emailService.js';
 
 //RUTAS DE MERCADO PAGO
 import preferenceRoutes from './routes/mercadopago/preferenceRoutes.js';
@@ -56,6 +58,10 @@ app.use('/api/adminRegister', adminRegister);
 app.use('/api/adminLogin', adminLogin);
 app.use('/api/adminUsers', adminUsers);
 app.use('/api/adminDelete', adminDelete);
+
+//RUTAS QR Y EMAIL
+app.use('/api/emailService', emailService);
+app.use('/api/qrGenerator', qrGenerator);
 
 
 
