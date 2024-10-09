@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Ruta para subir imágenes
-router.post('/uploadImage', upload.single('image'), (req, res) => {
+router.post('/', upload.single('image'), (req, res) => {
   // req.file contiene información sobre el archivo subido
   if (req.file) {
     console.log('Imagen subida:', req.file); // Agregar el console.log aquí
