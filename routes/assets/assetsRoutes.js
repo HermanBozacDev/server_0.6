@@ -20,6 +20,7 @@ const upload = multer({ storage: storage });
 router.post('/uploadImage', upload.single('image'), (req, res) => {
   // req.file contiene información sobre el archivo subido
   if (req.file) {
+    console.log('Imagen subida:', req.file); // Agregar el console.log aquí
     res.status(200).json({ message: 'Imagen subida con éxito', filePath: `/uploads/${req.file.filename}` });
   } else {
     res.status(400).json({ message: 'Error al subir la imagen' });
