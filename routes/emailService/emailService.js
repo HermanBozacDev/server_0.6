@@ -1,6 +1,6 @@
 // emailService.js
 import express from 'express';
-import { transporter } from '../../config.js'; // Configuración del transporter
+import { transporter } from '../../../config.js'; // Configuración del transporter
 
 const router = express.Router();
 
