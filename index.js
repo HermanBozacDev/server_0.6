@@ -33,7 +33,7 @@ import uploadImage from './routes/assets/assetsRoutes.js';
 import express from "express";
 import multer from 'multer';
 import path from 'path';
-
+import { fileURLToPath } from 'url';
 
 //DATABASES
 connectDB();
