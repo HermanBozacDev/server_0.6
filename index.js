@@ -67,7 +67,7 @@ app.use('/api/emailService', emailService);
 
 
 // Servir archivos estáticos desde el directorio 'uploads'
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(_dirname, 'uploads')));
 app.use('/api/uploadImage', uploadImage);
 
 //PUERTO
