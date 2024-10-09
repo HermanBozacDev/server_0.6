@@ -41,7 +41,9 @@ connectDB();
 
 const app = express();
 const port = appConfig.port;
-
+// Obtener el nombre del archivo y directorio
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 //APPS
 app.use(express.json());
 app.use(configureCors());
