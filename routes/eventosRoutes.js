@@ -50,6 +50,22 @@ router.get('/:id', async (req, res) => { // Cambiado a :id
 });
 
 // Eliminar y modificar eventos...
-// (Manten las otras rutas como están, haciendo cambios similares si es necesario)
+
+// Ruta para eliminar un evento por ID
+router.delete('/:id', async (req, res) => {
+  console.log(`[DELETE] /eventos/${req.params.id} - Iniciando eliminación de evento`);
+  try {
+    const eventoEliminado = await eventoRepository.deleteEvento(req.params.id); // Usa el repositorio
+    if (!eventoEliminado) {
+      console.log(`[DELETE] /eventos/${req.params.id} - Evento no encontrado`);
+      return res.status(404).json({ message: 'Evento no encontrado' });
+    }
+    console.log(`[DELETE] /eventos/${req.params.id} - Evento eliminado:`, eventoEliminado);
+    res.status(200).json({ message: 'Evento eliminado correctamente' });
+  } catch (error) {
+    console.error(`[DELETE] /eventos/${req.params.id} - Error al eliminar el evento:`, error.message);
+    res.status(500).json({ message: 'Error al eliminar el evento', error: error.message });
+  }
+});
 
 export default router;
