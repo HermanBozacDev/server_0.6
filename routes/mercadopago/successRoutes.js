@@ -7,6 +7,7 @@ import Venta from '../../models/ventas.js'; // Modelo para guardar la informaciÃ
 //tengo que aplicar logica. cantidad de items vendidos. para saber cuantos qr generar
 const router = express.Router();
 
+
 router.get("/", async (req, res) => {
     console.log("GET request received at /success");
     const { collection_id, external_reference } = req.query;
