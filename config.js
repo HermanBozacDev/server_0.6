@@ -10,7 +10,7 @@ export const appConfig = {
     port: 3000,
     idempotencyKey: uuidv4(),
     mercadoPago: new MercadoPagoConfig({
-        accessToken: 'APP_USR-3208588231811361-091423-58ab2b5fd537c43af8c128413d6d9e4f-1990229297',
+        accessToken: '',
         options: {
             timeout: 5000,
         }
